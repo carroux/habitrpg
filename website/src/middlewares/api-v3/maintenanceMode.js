@@ -6,12 +6,11 @@ module.exports = function maintenanceMode (req, res, next) {
   if (!MAINTENANCE_MODE) return next();
 
   res.format({
-    html: function maintenancePage () {
-      res.render('../../../views/static/maintenance');
+    'text/html': function maintenancePage () {
+      res.status(503).render('../../../views/static/maintenance');
     },
-    json: function apiUnavailable () {
+    default: function apiUnavailable () {
       res.status(503).send('Server offline for maintenance.');
     },
   });
 }
-
