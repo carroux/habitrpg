@@ -17,7 +17,7 @@ describe('maintenance mode middleware', () => {
 
   it('does not return 503 error when maintenance mode is off', () => {
     req = generateReq();
-    sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns(false);
+    sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns('false');
     let attachMaintenanceMode = requireAgain(pathToMaintenanceModeMiddleware);
 
     attachMaintenanceMode(req, res, next);
@@ -28,7 +28,7 @@ describe('maintenance mode middleware', () => {
 
   it('returns 503 error when maintenance mode is on', () => {
     req = generateReq();
-    sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns(true);
+    sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns('true');
     let attachMaintenanceMode = requireAgain(pathToMaintenanceModeMiddleware);
 
     attachMaintenanceMode(req, res, next);
@@ -40,7 +40,7 @@ describe('maintenance mode middleware', () => {
 
   it('renders maintenance page when request type is HTML', () => {
     req = generateReq({headers: {accept: 'text/html'}});
-    sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns(true);
+    sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns('true');
     let attachMaintenanceMode = requireAgain(pathToMaintenanceModeMiddleware);
 
     attachMaintenanceMode(req, res, next);
@@ -49,7 +49,7 @@ describe('maintenance mode middleware', () => {
 
   it('sends error message when request type is JSON', () => {
     req = generateReq({headers: {accept: 'application/json'}});
-    sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns(true);
+    sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns('true');
     let attachMaintenanceMode = requireAgain(pathToMaintenanceModeMiddleware);
 
     attachMaintenanceMode(req, res, next);
