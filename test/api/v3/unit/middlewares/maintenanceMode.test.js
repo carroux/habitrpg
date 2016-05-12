@@ -6,7 +6,7 @@ import {
 import nconf from 'nconf';
 import requireAgain from 'require-again';
 
-describe.only('maintenance mode middleware', () => {
+describe('maintenance mode middleware', () => {
   let res, req, next;
   let pathToMaintenanceModeMiddleware = '../../../../../website/src/middlewares/api-v3/maintenanceMode';
 
