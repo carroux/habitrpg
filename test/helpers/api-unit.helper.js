@@ -25,7 +25,6 @@ export function generateGroup (options = {}) {
 
 export function generateRes (options = {}) {
   let defaultRes = {
-    format: sandbox.stub(),
     render: sandbox.stub(),
     send: sandbox.stub(),
     status: sandbox.stub().returnsThis(),

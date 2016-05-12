@@ -39,7 +39,7 @@ describe('maintenance mode middleware', () => {
   });
 
   it('renders maintenance page when request type is HTML', () => {
-    req = generateReq({headers: {'Content-Type': 'text/html'}});
+    req = generateReq({headers: {accept: 'text/html'}});
     sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns(true);
     let attachMaintenanceMode = requireAgain(pathToMaintenanceModeMiddleware);
 
@@ -48,7 +48,7 @@ describe('maintenance mode middleware', () => {
   });
 
   it('sends error message when request type is JSON', () => {
-    req = generateReq({headers: {'Content-Type': 'application/json'}});
+    req = generateReq({headers: {accept: 'application/json'}});
     sandbox.stub(nconf, 'get').withArgs('MAINTENANCE_MODE').returns(true);
     let attachMaintenanceMode = requireAgain(pathToMaintenanceModeMiddleware);
 
